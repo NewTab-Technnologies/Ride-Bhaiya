@@ -37,7 +37,7 @@ class OTPVerificationScreen extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Poppinsm',
+                  fontFamily: 'Poppins',
                   letterSpacing: 1.0,
                 ),
               ),
@@ -102,7 +102,7 @@ class OTPVerificationScreen extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.blue[400],
                       fontSize: 21.0,
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Poppinsm',
                     ),
                   ),
                 ),

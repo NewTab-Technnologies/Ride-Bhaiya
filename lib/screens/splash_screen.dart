@@ -15,10 +15,10 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Text(
           'RB',
-          style: TextStyle(
-              fontSize: 133.0, color: Colors.white, fontFamily: 'Poppins'),
+          style: TextStyle(fontSize: 133.0, color: Colors.white,fontFamily: 'Poppins'),
         ),
       ),
     );
   }
 }
+
