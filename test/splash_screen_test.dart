@@ -14,7 +14,6 @@ void main() {
       ),
     );
 
-    // Verify that screen is SplashScreen
     expect(find.text('RB'), findsWidgets);
   });
 }
