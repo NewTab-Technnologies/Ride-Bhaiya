@@ -59,7 +59,7 @@ class OTPVerificationScreen extends StatelessWidget {
                   labelStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
-                    fontFamily: 'Poppins',
+                    fontFamily: 'Poppinsm',
                   ),
                   suffixIcon: Padding(
                     padding: const EdgeInsets.only(right: 25.0),
