@@ -1,0 +1,16 @@
+import 'package:flutter_test/flutter_test.dart';
+
+// test this file by running the command:
+// flutter test test/splash_screen_test.dart
+void main() {
+  testWidgets('test a sample test is in place', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: ScreenName(),
+      ),
+    );
+
+    expect(find.text('sample text'), findsWidgets);
+  });
+}
