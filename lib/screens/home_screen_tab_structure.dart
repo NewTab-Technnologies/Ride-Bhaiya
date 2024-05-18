@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white,
                     fontFamily: 'Poppins',
                     fontSize: 30,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
