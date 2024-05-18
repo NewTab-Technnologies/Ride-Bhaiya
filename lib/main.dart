@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ridebhaiya/screens/splash_screen.dart';
-import 'package:ridebhaiya/screens/splash_screen.dart';
+
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,10 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'RideBhaiya',
-      
+
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF49B6F3)),
-       
         useMaterial3: true,
       ),
       home:

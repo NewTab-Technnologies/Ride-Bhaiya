@@ -29,7 +29,7 @@ void main() {
     // Tap the 'Verify' button.
     await tester.tap(find.text('Verify'));
     await tester.pump();
-    
+
     // Add more assertions if necessary, for example, verifying navigation or error messages.
   });
 }
