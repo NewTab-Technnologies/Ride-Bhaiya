@@ -5,7 +5,7 @@ import 'package:ridebhaiya/screens/otp_verification_screen.dart';
 void main() {
   testWidgets('OTP Verification Screen test', (WidgetTester tester) async {
     // Build the OTPVerificationScreen widget.
-    await tester.pumpWidget(MaterialApp(home: OTPVerificationScreen()));
+    await tester.pumpWidget(const MaterialApp(home: OTPVerificationScreen()));
 
     // Verify the presence of the AppBar title.
     expect(find.text('RIDE BHAIYA'), findsOneWidget);
