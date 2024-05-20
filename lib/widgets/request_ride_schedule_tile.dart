@@ -89,6 +89,7 @@ class TileTwoButtons extends StatelessWidget
                         (
                           color: Color.fromRGBO(73,182,243, 1.000),
                           fontFamily: "Poppins",
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     );
@@ -98,7 +99,8 @@ class TileTwoButtons extends StatelessWidget
                 (
                   children: values.map((v)
                   {
-                    return Padding(
+                    return Padding
+                    (
                       padding: const EdgeInsets.only(bottom: 6.0),
                       child: Text
                       (
@@ -107,6 +109,7 @@ class TileTwoButtons extends StatelessWidget
                         (
                           color: Color.fromRGBO(73,182,243, 1.000),
                           fontFamily: "Poppins",
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     );
@@ -132,6 +135,7 @@ class TileTwoButtons extends StatelessWidget
               (
                 color: Color.fromRGBO(255, 255, 255, 1.000),
                 fontFamily: "Poppins",
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
@@ -152,6 +156,7 @@ class TileTwoButtons extends StatelessWidget
               (
                 color: Color.fromRGBO(255,255,255,1.000),
                 fontFamily: "Poppins",
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
