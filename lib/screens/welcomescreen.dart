@@ -29,21 +29,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Center(
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_vert_outlined,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(
-                height: 280,
+                height: 250,
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -52,7 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(width: 70),
+                      SizedBox(width: 47),
                       Text(
                         'Sign Up',
                         style: TextStyle(
@@ -61,7 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             color: Color(0xff49B6F3)),
                       ),
                       SizedBox(
-                        width: 70,
+                        width: 47,
                       ),
                       Icon(Icons.create_new_folder_outlined,
                           size: 35, color: Color(0xff49B6F3)),
@@ -70,7 +57,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 40,
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -79,7 +66,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(width: 87),
+                      SizedBox(width: 65),
                       Text(
                         'Login',
                         style: TextStyle(
@@ -88,7 +75,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             color: Color(0xff49B6F3)),
                       ),
                       SizedBox(
-                        width: 90,
+                        width: 60,
                       ),
                       Icon(Icons.login_outlined,
                           color: Color(0xff49B6F3), size: 35)
@@ -97,17 +84,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
               const SizedBox(
-                height: 140,
+                height: 160,
               ),
               const Text(
                 'We do not collect any personal information other than your phone number.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Poppins',
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: Colors.white,
                 ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +107,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
                     ),
@@ -127,7 +117,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
