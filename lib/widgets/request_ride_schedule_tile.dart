@@ -113,8 +113,8 @@ class TileTwoButtons extends StatelessWidget {
             key: const Key("contactButton"),
             onPressed: () {},
             style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(const Color.fromRGBO(73, 182, 243, 1.000)),
+              backgroundColor: MaterialStateProperty.all(
+                  const Color.fromRGBO(73, 182, 243, 1.000)),
               fixedSize: MaterialStateProperty.all(
                 const Size(164.1, 32.63),
               ),
