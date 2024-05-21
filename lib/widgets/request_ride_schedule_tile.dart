@@ -112,12 +112,9 @@ class TileTwoButtons extends StatelessWidget {
           TextButton(
             key: const Key("contactButton"),
             onPressed: () {},
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                  const Color.fromRGBO(73, 182, 243, 1.000)),
-              fixedSize: MaterialStateProperty.all(
-                const Size(164.1, 32.63),
-              ),
+            style: TextButton.styleFrom(
+              backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
+              fixedSize: const Size(164.1, 32.63),
             ),
             child: const Text(
               "Contact",
@@ -132,11 +129,9 @@ class TileTwoButtons extends StatelessWidget {
           TextButton(
             key: const Key("viewMoreButton"),
             onPressed: () {},
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                const Color.fromRGBO(73, 182, 243, 1.000),
-              ),
-              fixedSize: MaterialStateProperty.all(const Size(164.1, 32.63)),
+            style: TextButton.styleFrom(
+              backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
+              fixedSize: const Size(164.1, 32.63),
             ),
             child: const Text(
               "View More",
