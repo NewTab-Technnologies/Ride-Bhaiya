@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/la.dart';
-import 'package:ridebhaiya/screens/request_screen.dart';
+import 'package:ridebhaiya/screens/request_success_screen.dart';
 
 void main() {
   testWidgets('request_success_Screen UI Test', (WidgetTester tester) async {
