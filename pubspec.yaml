@@ -22,6 +22,7 @@ version: 1.0.0+1
 environment:
   sdk: ">=3.3.0 <4.0.0"
 
+
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running flutter pub upgrade --major-versions. Alternatively,
@@ -53,6 +54,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
 
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -81,14 +83,18 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+
+
     - family: Poppins
       fonts:
         - asset: fonts/Poppins-Regular.ttf
-        - asset: fonts/Poppins-SemiBold.ttf
-
+        - asset: fonts/Poppins-SemiBold.ttf 
     - family: Poppinsm
       fonts:
-        - asset: fonts/Poppins-Medium.ttf    
+        - asset: fonts/Poppins-Medium.ttf
+     
+
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
