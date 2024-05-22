@@ -18,6 +18,7 @@ class OTPVerificationScreen extends StatelessWidget {
               color: Colors.white,
               fontSize: 30.0,
               fontWeight: FontWeight.bold,
+              fontFamily: 'Poppins',
             ),
           ),
         ),
