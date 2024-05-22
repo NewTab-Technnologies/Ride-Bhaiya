@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/la.dart';
 
-class ConfirmRideScreen extends StatelessWidget {
-  const ConfirmRideScreen({super.key});
+class RequestSuccessScreen extends StatelessWidget {
+  const RequestSuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +15,10 @@ class ConfirmRideScreen extends StatelessWidget {
           child: Text(
             'RIDE BHAIYA',
             style: TextStyle(
-                color: Colors.white,
+                color: Colors.white, // text color
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'poppins'),
+                fontFamily: 'Poppins'),
           ),
         ),
       ),
@@ -27,10 +27,10 @@ class ConfirmRideScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You did it',
+              'Congratulations',
               style: TextStyle(
                 fontSize: 31,
-                fontFamily: 'Poppins', // Corrected to 'Poppins'
+                fontFamily: 'Poppins',
                 fontWeight: FontWeight.normal,
                 color: Colors.white,
               ),
@@ -43,30 +43,9 @@ class ConfirmRideScreen extends StatelessWidget {
             ),
             SizedBox(height: 25),
             Text(
-              'You successfully submitted your',
+              'Request Successful',
               style: TextStyle(
-                fontFamily: 'Poppinsm',
-                fontSize: 16,
-                letterSpacing: 1.5,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            Text(
-              'ask for a ride',
-              style: TextStyle(
-                fontFamily: 'Poppinsm',
-                fontSize: 16,
-                letterSpacing: 1.5,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 30),
-            Text(
-              'Have a safe ride and good day',
-              style: TextStyle(
-                fontFamily: 'Poppinsm',
+                fontFamily: 'Poppinsm', // Corrected to 'Poppins'
                 fontSize: 16,
                 letterSpacing: 1.5,
                 fontWeight: FontWeight.bold,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class RequestRideScreen extends StatefulWidget {
-  const RequestRideScreen({super.key});
+class ScheduleRideScreen extends StatefulWidget {
+  const ScheduleRideScreen({super.key});
 
   @override
-  State<RequestRideScreen> createState() => _RequestRideScreenState();
+  State<ScheduleRideScreen> createState() => _ScheduleRideScreenState();
 }
 
-class _RequestRideScreenState extends State<RequestRideScreen> {
+class _ScheduleRideScreenState extends State<ScheduleRideScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class _RequestRideScreenState extends State<RequestRideScreen> {
             children: <Widget>[
               const SizedBox(height: 15),
               const Text(
-                'Request a Ride',
+                'Schedule a Ride',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 35.0,
@@ -42,7 +42,7 @@ class _RequestRideScreenState extends State<RequestRideScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const RequestRideForm(),
+              const ScheduleRideForm(),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -57,29 +57,28 @@ class _RequestRideScreenState extends State<RequestRideScreen> {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(width: 40.0),
+                        SizedBox(width: 40),
                         Expanded(
                           flex: 8,
                           child: Text(
-                            'Send Request',
+                            'Schedule',
                             style: TextStyle(
                               color: Color(0xFF49B6F3),
                               fontFamily: 'Poppins',
-                              fontSize: 30.0,
+                              fontSize: 35.0,
                               fontWeight: FontWeight.w100,
                             ),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        SizedBox(width: 10),
+                        SizedBox(width: 30),
                         Expanded(
                           flex: 2,
                           child: Icon(
-                            Icons.help_outline_outlined,
+                            Icons.access_time,
                             color: Color(0xFF49B6F3),
-                            size: 45,
+                            size: 40,
                           ),
                         ),
                       ],
@@ -95,14 +94,14 @@ class _RequestRideScreenState extends State<RequestRideScreen> {
   }
 }
 
-class RequestRideForm extends StatefulWidget {
-  const RequestRideForm({super.key});
+class ScheduleRideForm extends StatefulWidget {
+  const ScheduleRideForm({super.key});
 
   @override
-  State<RequestRideForm> createState() => _RequestRideFormState();
+  State<ScheduleRideForm> createState() => _ScheduleRideFormState();
 }
 
-class _RequestRideFormState extends State<RequestRideForm> {
+class _ScheduleRideFormState extends State<ScheduleRideForm> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
