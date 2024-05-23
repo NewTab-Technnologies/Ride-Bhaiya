@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ridebhaiya/widgets/request_ride_schedule_tile.dart';
 
 void main() {
-  testWidgets('TileTwoButtons widget test', (WidgetTester tester) async {
+  testWidgets('RideDetailsTile widget test', (WidgetTester tester) async {
     final List<String> values = [
       "Venkat Sai",
       "Dayton",
@@ -15,7 +15,7 @@ void main() {
     ];
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: TileTwoButtons(values: values),
+        body: RideDetailsTile(values: values),
       ),
     ));
 

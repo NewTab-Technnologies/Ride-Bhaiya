@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class TileTwoButtons extends StatefulWidget {
-  const TileTwoButtons({
+class RideDetailsTile extends StatefulWidget {
+  const RideDetailsTile({
     super.key,
     required this.values,
   });
   final List<String> values;
 
   @override
-  State<TileTwoButtons> createState() => _TileTwoButtonsState();
+  State<RideDetailsTile> createState() => _RideDetailsTileState();
 }
 
-class _TileTwoButtonsState extends State<TileTwoButtons> {
+class _RideDetailsTileState extends State<RideDetailsTile> {
   List<String> parameters = [
     "Name",
     "From",
@@ -35,7 +35,7 @@ class _TileTwoButtonsState extends State<TileTwoButtons> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              padding: EdgeInsets.symmetric(vertical: height * 0.02),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[

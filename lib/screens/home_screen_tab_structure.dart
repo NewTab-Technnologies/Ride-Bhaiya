@@ -79,8 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: height * 0.43,
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 child: TabBarView(children: [
-                  TileTwoButtons(values: values),
-                  TileTwoButtons(values: values),
+                  ScheduleTile(values: values),
+                  RequestTile(values: values),
                 ]),
               ),
               SizedBox(height: height * 0.03),
@@ -152,5 +152,35 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           )),
     );
+  }
+}
+
+class ScheduleTile extends StatefulWidget {
+  const ScheduleTile({super.key, required this.values});
+  final List<String> values;
+
+  @override
+  State<ScheduleTile> createState() => _ScheduleTileState();
+}
+
+class _ScheduleTileState extends State<ScheduleTile> {
+  @override
+  Widget build(BuildContext context) {
+    return RideDetailsTile(values: widget.values);
+  }
+}
+
+class RequestTile extends StatefulWidget {
+  const RequestTile({super.key, required this.values});
+  final List<String> values;
+
+  @override
+  State<RequestTile> createState() => _RequestTileState();
+}
+
+class _RequestTileState extends State<RequestTile> {
+  @override
+  Widget build(BuildContext context) {
+    return RideDetailsTile(values: widget.values);
   }
 }
