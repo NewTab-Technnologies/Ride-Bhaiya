@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:502458992564:android:a960816379e5e3d81fd4e1",
+        "android_client_info": {
+          "package_name": "com.example.ridebhaiya"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfm-z06_0BJIRMoJdgHVjeusA1BjQD5Sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:502458992564:android:bbc945d75f86a0201fd4e1",
         "android_client_info": {
           "package_name": "com.newtab.ridebhaiya"
