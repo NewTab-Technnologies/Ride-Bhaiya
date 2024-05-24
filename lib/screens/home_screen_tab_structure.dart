@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
+import 'package:ridebhaiya/widgets/request_ride_schedule_tile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,6 +12,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<String> homeTabs = ['Latest Schedules', 'Latest Requests'];
+  List<String> values = [
+    "Venkat Sai",
+    "Dayton",
+    "Denver Airport",
+    "24th April 2024",
+    "4:00 AM",
+    "2",
+    "(+1) 7203000803"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -68,14 +78,18 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 height: height * 0.43,
                 margin: const EdgeInsets.symmetric(vertical: 20),
-                child: const TabBarView(children: [
-                  ScheduleTile(),
-                  RequestTile(),
+                child: TabBarView(children: [
+                  ScheduleTile(values: values),
+                  RequestTile(values: values),
                 ]),
               ),
               SizedBox(height: height * 0.03),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(255, 255, 255, 1.000),
+                  elevation: 0.0,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
@@ -106,6 +120,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(255, 255, 255, 1.000),
+                  elevation: 0.0,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
@@ -137,48 +155,32 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class ScheduleTile extends StatelessWidget {
-  const ScheduleTile({super.key});
+class ScheduleTile extends StatefulWidget {
+  const ScheduleTile({super.key, required this.values});
+  final List<String> values;
 
   @override
-  Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
+  State<ScheduleTile> createState() => _ScheduleTileState();
+}
 
-    return Container(
-      height: height * 0.05,
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: const Center(
-          child: Text(
-        'Schedule Tile',
-        style: TextStyle(fontFamily: 'Poppins', fontSize: 30),
-      )),
-    );
+class _ScheduleTileState extends State<ScheduleTile> {
+  @override
+  Widget build(BuildContext context) {
+    return RideDetailsTile(values: widget.values);
   }
 }
 
-class RequestTile extends StatelessWidget {
-  const RequestTile({super.key});
+class RequestTile extends StatefulWidget {
+  const RequestTile({super.key, required this.values});
+  final List<String> values;
 
   @override
-  Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
+  State<RequestTile> createState() => _RequestTileState();
+}
 
-    return Container(
-      height: height * 0.5,
-      margin: const EdgeInsets.symmetric(horizontal: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: const Center(
-          child: Text(
-        'Requests Tile',
-        style: TextStyle(fontFamily: 'Poppins', fontSize: 30),
-      )),
-    );
+class _RequestTileState extends State<RequestTile> {
+  @override
+  Widget build(BuildContext context) {
+    return RideDetailsTile(values: widget.values);
   }
 }
