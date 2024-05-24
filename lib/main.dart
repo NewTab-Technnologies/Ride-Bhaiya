@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ridebhaiya/screens/splash_screen.dart';
+import 'package:ridebhaiya/screens/view_requests_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home:
-          const SplashScreen(), // when you change this class name in local, you need to revert it back to SplashScreen() before pushing to GitHub
+          const ViewRequestsScreen(), // when you change this class name in local, you need to revert it back to SplashScreen() before pushing to GitHub
     );
   }
 }

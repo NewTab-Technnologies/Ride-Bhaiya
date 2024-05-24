@@ -1,79 +1,111 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import "package:ridebhaiya/widgets/request_ride_schedule_tile.dart";
 
 class ViewRequestsScreen extends StatefulWidget {
   const ViewRequestsScreen({super.key});
-
   @override
   State<ViewRequestsScreen> createState() => _ViewRequestsScreenState();
 }
 
 class _ViewRequestsScreenState extends State<ViewRequestsScreen> {
+  List<String> values = [
+    "Venkat Sai",
+    "Dayton",
+    "Denver Airport",
+    "24th April 2024",
+    "4:00 AM",
+    "2",
+    "(+1) 7203000803"
+  ];
+
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      backgroundColor: const Color(0xff49B6F3),
-      appBar: AppBar(
-        key: const Key('app_bar'),
-        backgroundColor: const Color(0xff49B6F3),
-        title: const Center(
-          child: Text(
-            'RIDE BHAIYA',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Poppins'),
+        backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
+        appBar: AppBar(
+          backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
+          title: const SafeArea(
+            child: Text(
+              "RIDE BHAIYA",
+              style: TextStyle(
+                color: Color.fromRGBO(255, 255, 255, 1.000),
+                fontFamily: "Poppins",
+                fontSize: 31,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
+          centerTitle: true,
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 20.0),
-            const Center(
-              child: Text(
-                'View Requests',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28.0,
-                  fontFamily: 'Poppins',
+            Column(
+              children: [
+                SizedBox(
+                  height: height * 0.04,
                 ),
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            Container(
-              width: 357,
-              height: 270,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(35.0),
-              ),
-              child: const Center(
-                child: Text(
-                  'Requests',
-                  style: TextStyle(fontSize: 25.0, color: Color(0xff49B6F3)),
+                const Text(
+                  "View Requests",
+                  style: TextStyle(
+                    color: Color.fromRGBO(255, 255, 255, 1.000),
+                    fontFamily: "Poppins",
+                    fontSize: 31,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            Container(
-              width: 357,
-              height: 270,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(35.0),
-              ),
-              child: const Center(
-                child: Text(
-                  'Requests',
-                  style: TextStyle(fontSize: 25.0, color: Color(0xff49B6F3)),
+                SizedBox(
+                  height: height * 0.04,
                 ),
-              ),
+                Container(
+                    height: height * 0.325,
+                    width: width * 0.95,
+                    margin: const EdgeInsets.symmetric(horizontal: 7.0),
+                    child: ScheduleOneTile(values: values)),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                Container(
+                    height: height * 0.325,
+                    width: width * 0.95,
+                    margin: const EdgeInsets.symmetric(horizontal: 7.0),
+                    child: ScheduleTwoTile(values: values)),
+              ],
             ),
           ],
-        ),
-      ),
-    );
+        ));
+  }
+}
+
+class ScheduleOneTile extends StatefulWidget {
+  const ScheduleOneTile({super.key, required this.values});
+  final List<String> values;
+
+  @override
+  State<ScheduleOneTile> createState() => _ScheduleOneTileState();
+}
+
+class _ScheduleOneTileState extends State<ScheduleOneTile> {
+  @override
+  Widget build(BuildContext context) {
+    return RideDetailsTile(values: widget.values, flag: false);
+  }
+}
+
+class ScheduleTwoTile extends StatefulWidget {
+  const ScheduleTwoTile({super.key, required this.values});
+  final List<String> values;
+
+  @override
+  State<ScheduleTwoTile> createState() => _ScheduleTwoTileState();
+}
+
+class _ScheduleTwoTileState extends State<ScheduleTwoTile> {
+  @override
+  Widget build(BuildContext context) {
+    return RideDetailsTile(values: widget.values, flag: false);
   }
 }
