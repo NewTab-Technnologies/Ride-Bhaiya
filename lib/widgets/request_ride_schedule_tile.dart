@@ -4,8 +4,10 @@ class RideDetailsTile extends StatefulWidget {
   const RideDetailsTile({
     super.key,
     required this.values,
+    this.flag = true,
   });
   final List<String> values;
+  final dynamic flag;
 
   @override
   State<RideDetailsTile> createState() => _RideDetailsTileState();
@@ -40,30 +42,32 @@ class _RideDetailsTileState extends State<RideDetailsTile> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Column(
-                    children: parameters.map((p) {
+                    children: parameters.map((para) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 6.0),
+                        padding: EdgeInsets.only(bottom: height * 0.007),
                         child: Text(
-                          p,
-                          style: const TextStyle(
-                            color: Color.fromRGBO(73, 182, 243, 1.000),
+                          para,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(73, 182, 243, 1.000),
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.w400,
+                            fontSize: height * 0.018,
                           ),
                         ),
                       );
                     }).toList(),
                   ),
                   Column(
-                    children: widget.values.map((v) {
+                    children: widget.values.map((val) {
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 6.0),
+                        padding: EdgeInsets.only(bottom: height * 0.007),
                         child: Text(
-                          v,
-                          style: const TextStyle(
-                            color: Color.fromRGBO(73, 182, 243, 1.000),
+                          val,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(73, 182, 243, 1.000),
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.w400,
+                            fontSize: height * 0.018,
                           ),
                         ),
                       );
@@ -72,7 +76,6 @@ class _RideDetailsTileState extends State<RideDetailsTile> {
                 ],
               ),
             ),
-            SizedBox(height: height * 0.01),
             TextButton(
               key: const Key("contactButton"),
               onPressed: () {},
@@ -80,32 +83,35 @@ class _RideDetailsTileState extends State<RideDetailsTile> {
                 backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
                 fixedSize: const Size(164.1, 32.63),
               ),
-              child: const Text(
+              child: Text(
                 "Contact",
                 style: TextStyle(
-                  color: Color.fromRGBO(255, 255, 255, 1.000),
+                  color: const Color.fromRGBO(255, 255, 255, 1.000),
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w400,
+                  fontSize: height * 0.018,
                 ),
               ),
             ),
             SizedBox(height: height * 0.01),
-            TextButton(
-              key: const Key("viewMoreButton"),
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
-                fixedSize: const Size(164.1, 32.63),
-              ),
-              child: const Text(
-                "View More",
-                style: TextStyle(
-                  color: Color.fromRGBO(255, 255, 255, 1.000),
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
+            if (widget.flag)
+              TextButton(
+                key: const Key("viewMoreButton"),
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
+                  fixedSize: const Size(164.1, 32.63),
+                ),
+                child: Text(
+                  "View More",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 1.000),
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w400,
+                    fontSize: height * 0.018,
+                  ),
                 ),
               ),
-            ),
             SizedBox(height: height * 0.01),
           ],
         ),

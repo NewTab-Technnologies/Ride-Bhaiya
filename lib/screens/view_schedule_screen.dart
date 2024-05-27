@@ -1,13 +1,13 @@
 import "package:flutter/material.dart";
-import "package:ridebhaiya/widgets/view_request_schedule_tile.dart";
+import "package:ridebhaiya/widgets/request_ride_schedule_tile.dart";
 
-class ScheduleScreen extends StatefulWidget {
-  const ScheduleScreen({super.key});
+class ViewScheduleScreen extends StatefulWidget {
+  const ViewScheduleScreen({super.key});
   @override
-  State<ScheduleScreen> createState() => _ScheduleScreenState();
+  State<ViewScheduleScreen> createState() => _ViewScheduleScreenState();
 }
 
-class _ScheduleScreenState extends State<ScheduleScreen> {
+class _ViewScheduleScreenState extends State<ViewScheduleScreen> {
   List<String> values = [
     "Venkat Sai",
     "Dayton",
@@ -21,8 +21,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
-
     return Scaffold(
         backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
         appBar: AppBar(
@@ -44,10 +42,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
-              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  height: height * 0.05,
+                  height: height * 0.04,
                 ),
                 const Text(
                   "View Schedules",
@@ -59,21 +56,23 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.07,
+                  height: height * 0.04,
                 ),
-                Container(
-                    height: height * 0.325,
-                    width: width * 0.95,
-                    margin: const EdgeInsets.symmetric(horizontal: 7.0),
-                    child: ScheduleOneTile(values: values)),
                 SizedBox(
-                  height: height * 0.03,
+                  height: height * 0.69,
+                  child: SingleChildScrollView(
+                      child: Column(
+                    children: [
+                      values,
+                      values,
+                    ].map((schedule) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: height * 0.02),
+                        child: ScheduleTile(values: values),
+                      );
+                    }).toList(),
+                  )),
                 ),
-                Container(
-                    height: height * 0.325,
-                    width: width * 0.95,
-                    margin: const EdgeInsets.symmetric(horizontal: 7.0),
-                    child: ScheduleTwoTile(values: values)),
               ],
             ),
           ],
@@ -81,32 +80,23 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   }
 }
 
-class ScheduleOneTile extends StatefulWidget {
-  const ScheduleOneTile({super.key, required this.values});
+class ScheduleTile extends StatefulWidget {
+  const ScheduleTile({super.key, required this.values});
   final List<String> values;
 
   @override
-  State<ScheduleOneTile> createState() => _ScheduleOneTileState();
+  State<ScheduleTile> createState() => _ScheduleTileState();
 }
 
-class _ScheduleOneTileState extends State<ScheduleOneTile> {
+class _ScheduleTileState extends State<ScheduleTile> {
   @override
   Widget build(BuildContext context) {
-    return RequestScheduleTile(values: widget.values);
-  }
-}
-
-class ScheduleTwoTile extends StatefulWidget {
-  const ScheduleTwoTile({super.key, required this.values});
-  final List<String> values;
-
-  @override
-  State<ScheduleTwoTile> createState() => _ScheduleTwoTileState();
-}
-
-class _ScheduleTwoTileState extends State<ScheduleTwoTile> {
-  @override
-  Widget build(BuildContext context) {
-    return RequestScheduleTile(values: widget.values);
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Container(
+        height: height * 0.325,
+        width: width * 0.95,
+        margin: const EdgeInsets.symmetric(horizontal: 7.0),
+        child: RideDetailsTile(values: widget.values, flag: false));
   }
 }

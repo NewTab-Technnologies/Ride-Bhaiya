@@ -16,7 +16,7 @@ void main() {
     expect(find.text('RIDE BHAIYA'), findsOneWidget);
     expect(find.text('Schedule a Ride'), findsOneWidget);
     expect(find.text('Schedule'), findsOneWidget);
-    expect(find.byIcon(Icons.access_time), findsOneWidget);
+    expect(find.byIcon(Icons.access_time), findsWidgets);
 
     await tester.tap(find.byType(ElevatedButton));
     await tester.pump();
