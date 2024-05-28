@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(height * 0.08),
+              preferredSize: Size.fromHeight(height * 0.1),
               child: Container(
                 height: 55,
                 margin: EdgeInsets.symmetric(horizontal: height * 0.03),
@@ -76,14 +76,14 @@ class _HomeScreenState extends State<HomeScreen> {
           body: Column(
             children: [
               Container(
-                height: height * 0.43,
+                height: height * 0.39,
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 child: TabBarView(children: [
                   ScheduleTile(values: values),
                   RequestTile(values: values),
                 ]),
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.08),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(

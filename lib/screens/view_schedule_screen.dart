@@ -1,13 +1,13 @@
 import "package:flutter/material.dart";
 import "package:ridebhaiya/widgets/request_ride_schedule_tile.dart";
 
-class ViewRequestsScreen extends StatefulWidget {
-  const ViewRequestsScreen({super.key});
+class ViewScheduleScreen extends StatefulWidget {
+  const ViewScheduleScreen({super.key});
   @override
-  State<ViewRequestsScreen> createState() => _ViewRequestsScreenState();
+  State<ViewScheduleScreen> createState() => _ViewScheduleScreenState();
 }
 
-class _ViewRequestsScreenState extends State<ViewRequestsScreen> {
+class _ViewScheduleScreenState extends State<ViewScheduleScreen> {
   List<String> values = [
     "Venkat Sai",
     "Dayton",
@@ -47,7 +47,7 @@ class _ViewRequestsScreenState extends State<ViewRequestsScreen> {
                   height: height * 0.04,
                 ),
                 const Text(
-                  "View Requests",
+                  "View Schedules",
                   style: TextStyle(
                     color: Color.fromRGBO(255, 255, 255, 1.000),
                     fontFamily: "Poppins",
@@ -68,7 +68,7 @@ class _ViewRequestsScreenState extends State<ViewRequestsScreen> {
                     ].map((schedule) {
                       return Padding(
                         padding: EdgeInsets.only(bottom: height * 0.02),
-                        child: RequestTile(values: values),
+                        child: ScheduleTile(values: values),
                       );
                     }).toList(),
                   )),
@@ -80,15 +80,15 @@ class _ViewRequestsScreenState extends State<ViewRequestsScreen> {
   }
 }
 
-class RequestTile extends StatefulWidget {
-  const RequestTile({super.key, required this.values});
+class ScheduleTile extends StatefulWidget {
+  const ScheduleTile({super.key, required this.values});
   final List<String> values;
 
   @override
-  State<RequestTile> createState() => _RequestTileState();
+  State<ScheduleTile> createState() => _ScheduleTileState();
 }
 
-class _RequestTileState extends State<RequestTile> {
+class _ScheduleTileState extends State<ScheduleTile> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;

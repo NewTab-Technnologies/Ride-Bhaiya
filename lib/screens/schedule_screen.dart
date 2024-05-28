@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ridebhaiya/widgets/form_component.dart';
 
 class ScheduleRideScreen extends StatefulWidget {
   const ScheduleRideScreen({super.key});
@@ -8,6 +9,20 @@ class ScheduleRideScreen extends StatefulWidget {
 }
 
 class _ScheduleRideScreenState extends State<ScheduleRideScreen> {
+  final _startingPointController = TextEditingController();
+  final _destinationController = TextEditingController();
+  final _timeController = TextEditingController();
+  final _seatingController = TextEditingController();
+
+  @override
+  void dispose() {
+    _startingPointController.dispose();
+    _destinationController.dispose();
+    _timeController.dispose();
+    _seatingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,14 +54,22 @@ class _ScheduleRideScreenState extends State<ScheduleRideScreen> {
                   color: Colors.white,
                   fontSize: 35.0,
                   fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w100,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const ScheduleRideForm(),
+              FormComponent(
+                startingPointController: _startingPointController,
+                destinationController: _destinationController,
+                timeController: _timeController,
+                seatingController: _seatingController,
+                formFor: 'Schedule',
+              ),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
+                  elevation: 0.0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40.0),
                   ),
@@ -91,19 +114,5 @@ class _ScheduleRideScreenState extends State<ScheduleRideScreen> {
         ),
       ),
     );
-  }
-}
-
-class ScheduleRideForm extends StatefulWidget {
-  const ScheduleRideForm({super.key});
-
-  @override
-  State<ScheduleRideForm> createState() => _ScheduleRideFormState();
-}
-
-class _ScheduleRideFormState extends State<ScheduleRideForm> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
