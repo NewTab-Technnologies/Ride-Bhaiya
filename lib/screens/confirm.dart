@@ -1,9 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/la.dart';
+import 'package:ridebhaiya/screens/home_screen_tab_structure.dart';
+import 'dart:async';
 
-class ConfirmScreen extends StatelessWidget {
+class ConfirmScreen extends StatefulWidget {
   const ConfirmScreen({super.key});
+
+  @override
+  State<ConfirmScreen> createState() => _ConfirmScreenState();
+}
+
+class _ConfirmScreenState extends State<ConfirmScreen> {
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer(
+      const Duration(seconds: 3),
+      () => Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        (Route<dynamic> route) => false,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

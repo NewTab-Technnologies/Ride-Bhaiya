@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
+import 'package:ridebhaiya/screens/get_ride_screen.dart';
+import 'package:ridebhaiya/screens/offer_ride_screen.dart';
 import 'package:ridebhaiya/widgets/request_ride_schedule_tile.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -85,7 +87,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: height * 0.08),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const OfferRideScreen()),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(255, 255, 255, 1.000),
                   elevation: 0.0,
@@ -119,7 +125,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 35,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const GetRideScreen()),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(255, 255, 255, 1.000),
                   elevation: 0.0,
@@ -166,7 +176,10 @@ class ScheduleTile extends StatefulWidget {
 class _ScheduleTileState extends State<ScheduleTile> {
   @override
   Widget build(BuildContext context) {
-    return RideDetailsTile(values: widget.values);
+    return RideDetailsTile(
+      values: widget.values,
+      path: 'two',
+    );
   }
 }
 
@@ -181,6 +194,9 @@ class RequestTile extends StatefulWidget {
 class _RequestTileState extends State<RequestTile> {
   @override
   Widget build(BuildContext context) {
-    return RideDetailsTile(values: widget.values);
+    return RideDetailsTile(
+      values: widget.values,
+      path: 'one',
+    );
   }
 }

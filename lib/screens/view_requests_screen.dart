@@ -37,6 +37,7 @@ class _ViewRequestsScreenState extends State<ViewRequestsScreen> {
             ),
           ),
           centerTitle: true,
+          automaticallyImplyLeading: false,
         ),
         body: Row(
           mainAxisAlignment: MainAxisAlignment.center,

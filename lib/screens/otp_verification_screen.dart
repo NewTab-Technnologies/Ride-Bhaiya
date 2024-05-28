@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/teenyicons.dart';
+import 'package:ridebhaiya/screens/success.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
   const OTPVerificationScreen({super.key});
@@ -22,6 +23,7 @@ class OTPVerificationScreen extends StatelessWidget {
             ),
           ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -83,7 +85,11 @@ class OTPVerificationScreen extends StatelessWidget {
             ),
             const SizedBox(height: 38.0),
             GestureDetector(
-              onTap: () => const Navigator(),
+              onTap: () => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const SuccessScreen()),
+                (Route<dynamic> route) => false,
+              ),
               child: Container(
                 height: 65.0,
                 width: 220.0,

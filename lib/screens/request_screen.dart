@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ridebhaiya/screens/request_success_screen.dart';
 import 'package:ridebhaiya/widgets/form_component.dart';
 
 class RequestRideScreen extends StatefulWidget {
@@ -38,6 +39,7 @@ class _RequestRideScreenState extends State<RequestRideScreen> {
         ),
         backgroundColor: const Color(0xFF49B6F3),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       backgroundColor: const Color(0xFF49B6F3),
       body: SingleChildScrollView(
@@ -62,7 +64,12 @@ class _RequestRideScreenState extends State<RequestRideScreen> {
               formFor: 'Request',
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const RequestSuccessScreen()),
+                (Route<dynamic> route) => false,
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 elevation: 0.0,
