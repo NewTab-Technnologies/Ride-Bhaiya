@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ridebhaiya/screens/otp_verification_screen.dart';
 
-class GetOTPScreen extends StatelessWidget {
-  const GetOTPScreen({super.key});
+class GetOTPScreen extends StatefulWidget {
+  const GetOTPScreen({super.key, this.page = 'login'});
+  final String page;
 
+  @override
+  State<GetOTPScreen> createState() => _GetOTPScreenState();
+}
+
+class _GetOTPScreenState extends State<GetOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,18 +32,61 @@ class GetOTPScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 180.0),
-              const Center(
-                  child: Text(
-                'OTP \nVerification',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 29.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppinsm',
-                    letterSpacing: 1.0),
-              )),
+              Center(
+                  child: widget.page == 'login'
+                      ? const Text(
+                          'OTP \nVerification',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 29.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Poppinsm',
+                              letterSpacing: 1.0),
+                        )
+                      : const Text(
+                          'Enter your \nDetails',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 29.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Poppinsm',
+                              letterSpacing: 1.0),
+                        )),
               const SizedBox(height: 60.0),
+              if (widget.page != 'login')
+                SizedBox(
+                  width: 360,
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                        labelText: '  Enter Your User Name',
+                        labelStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontFamily: 'Poppinsm'),
+                        suffixIcon: const Padding(
+                          padding: EdgeInsets.only(right: 15.0),
+                          child: Icon(Icons.person,
+                              color: Colors.white, size: 33.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(65.0),
+                          borderSide: const BorderSide(
+                            color: Colors.white,
+                            width: 4.3,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(65.0),
+                            borderSide: const BorderSide(
+                                color: Colors.white, width: 4.0))),
+                    cursorColor: Colors.white,
+                  ),
+                ),
+              const SizedBox(height: 50),
               SizedBox(
                 width: 360,
                 child: TextFormField(
