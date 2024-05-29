@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ridebhaiya/screens/confirm.dart';
 import 'package:ridebhaiya/widgets/form_component.dart';
 
 class ScheduleRideScreen extends StatefulWidget {
@@ -38,6 +39,7 @@ class _ScheduleRideScreenState extends State<ScheduleRideScreen> {
         ),
         backgroundColor: const Color(0xFF49B6F3),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       backgroundColor: const Color(0xFF49B6F3),
       body: SingleChildScrollView(
@@ -66,7 +68,12 @@ class _ScheduleRideScreenState extends State<ScheduleRideScreen> {
                 formFor: 'Schedule',
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ConfirmScreen()),
+                  (Route<dynamic> route) => false,
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   elevation: 0.0,

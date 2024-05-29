@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:ridebhaiya/screens/view_requests_screen.dart';
+import 'package:ridebhaiya/screens/view_schedule_screen.dart';
 
 class RideDetailsTile extends StatefulWidget {
   const RideDetailsTile({
     super.key,
     required this.values,
     this.flag = true,
+    this.path = 'one',
   });
   final List<String> values;
   final dynamic flag;
+  final String path;
 
   @override
   State<RideDetailsTile> createState() => _RideDetailsTileState();
@@ -97,7 +101,13 @@ class _RideDetailsTileState extends State<RideDetailsTile> {
             if (widget.flag)
               TextButton(
                 key: const Key("viewMoreButton"),
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => widget.path == 'one'
+                          ? const ViewRequestsScreen()
+                          : const ViewScheduleScreen()),
+                ),
                 style: TextButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(73, 182, 243, 1.000),
                   fixedSize: const Size(164.1, 32.63),

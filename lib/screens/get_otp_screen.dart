@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ridebhaiya/screens/otp_verification_screen.dart';
 
 class GetOTPScreen extends StatelessWidget {
   const GetOTPScreen({super.key});
@@ -19,6 +20,7 @@ class GetOTPScreen extends StatelessWidget {
                   fontFamily: 'Poppins'),
             ),
           ),
+          automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -72,7 +74,11 @@ class GetOTPScreen extends StatelessWidget {
               ),
               const SizedBox(height: 45.0),
               GestureDetector(
-                onTap: () => const Navigator(),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const OTPVerificationScreen()),
+                ),
                 child: Container(
                   height: 60.0,
                   width: 215.0,

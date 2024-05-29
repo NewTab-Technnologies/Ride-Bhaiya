@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ridebhaiya/screens/schedule_screen.dart';
+import 'package:ridebhaiya/screens/view_requests_screen.dart';
 
 class OfferRideScreen extends StatefulWidget {
   const OfferRideScreen({super.key});
@@ -24,6 +26,7 @@ class _OfferRideScreenState extends State<OfferRideScreen> {
             fontFamily: 'Poppins',
           ),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: <Widget>[
@@ -31,7 +34,10 @@ class _OfferRideScreenState extends State<OfferRideScreen> {
           Image.asset('assets/ride-1.png'),
           const SizedBox(height: 25.0),
           GestureDetector(
-            onTap: () => const Navigator(), // Placeholder for onTap function
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ScheduleRideScreen())),
             child: Container(
               height: 60.0,
               width: 350.0,
@@ -98,7 +104,10 @@ class _OfferRideScreenState extends State<OfferRideScreen> {
           ),
           const SizedBox(height: 40.0),
           GestureDetector(
-            onTap: () => const Navigator(), // Placeholder for onTap function
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ViewRequestsScreen())),
             child: Container(
               height: 60.0,
               width: 350.0,

@@ -37,6 +37,7 @@ class _ViewScheduleScreenState extends State<ViewScheduleScreen> {
             ),
           ),
           centerTitle: true,
+          automaticallyImplyLeading: false,
         ),
         body: Row(
           mainAxisAlignment: MainAxisAlignment.center,

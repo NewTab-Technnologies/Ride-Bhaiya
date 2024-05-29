@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ridebhaiya/screens/request_screen.dart';
+import 'package:ridebhaiya/screens/view_schedule_screen.dart';
 
 class GetRideScreen extends StatefulWidget {
   const GetRideScreen({super.key});
@@ -25,6 +27,7 @@ class _RidebhaiyaState extends State<GetRideScreen> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: <Widget>[
@@ -32,7 +35,11 @@ class _RidebhaiyaState extends State<GetRideScreen> {
           Image.asset('assets/ridebhi.png'),
           const SizedBox(height: 20.0),
           GestureDetector(
-            onTap: () => const Navigator(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ViewScheduleScreen()),
+            ),
             child: Container(
               height: 60.0,
               width: 350.0,
@@ -102,7 +109,11 @@ class _RidebhaiyaState extends State<GetRideScreen> {
           ),
           const SizedBox(height: 40.0),
           GestureDetector(
-            onTap: () => const Navigator(),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const RequestRideScreen()),
+            ),
             child: Container(
               height: 60.0,
               width: 350.0,

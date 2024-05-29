@@ -1,9 +1,37 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/la.dart';
+import 'package:ridebhaiya/screens/home_screen_tab_structure.dart';
 
-class RequestSuccessScreen extends StatelessWidget {
+class RequestSuccessScreen extends StatefulWidget {
   const RequestSuccessScreen({super.key});
+
+  @override
+  State<RequestSuccessScreen> createState() => _RequestSuccessScreenState();
+}
+
+class _RequestSuccessScreenState extends State<RequestSuccessScreen> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer(
+      const Duration(seconds: 3),
+      () => Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        (Route<dynamic> route) => false,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
