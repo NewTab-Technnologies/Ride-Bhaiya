@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ridebhaiya/screens/get_otp_screen.dart';
+import 'package:ridebhaiya/screens/sign_up_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -36,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ElevatedButton(
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const GetOTPScreen()),
+                  MaterialPageRoute(builder: (context) => const SignUp()),
                 ),
                 child: const Padding(
                   padding: EdgeInsets.all(9),
