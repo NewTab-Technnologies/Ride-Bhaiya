@@ -36,7 +36,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ElevatedButton(
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const GetOTPScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const GetOTPScreen(page: 'signup')),
                 ),
                 child: const Padding(
                   padding: EdgeInsets.all(9),
