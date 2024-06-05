@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ridebhaiya/bloc/schedule_screen/schedule_repositary.dart';
+import 'package:ridebhaiya/bloc/schedule_screen/schedule_screen_bloc.dart';
+import 'package:ridebhaiya/bloc/schedule_screen/schedule_screen_event.dart';
+import 'package:ridebhaiya/bloc/schedule_screen/schedule_screen_state.dart';
 import 'package:ridebhaiya/screens/confirm.dart';
 import 'package:ridebhaiya/widgets/form_component.dart';
 
@@ -6,14 +11,15 @@ class ScheduleRideScreen extends StatefulWidget {
   const ScheduleRideScreen({super.key});
 
   @override
-  State<ScheduleRideScreen> createState() => _ScheduleRideScreenState();
+  ScheduleRideScreenState createState() => ScheduleRideScreenState();
 }
 
-class _ScheduleRideScreenState extends State<ScheduleRideScreen> {
-  final _startingPointController = TextEditingController();
-  final _destinationController = TextEditingController();
-  final _timeController = TextEditingController();
-  final _seatingController = TextEditingController();
+class ScheduleRideScreenState extends State<ScheduleRideScreen> {
+  final TextEditingController _startingPointController =
+      TextEditingController();
+  final TextEditingController _destinationController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
+  final TextEditingController _seatingController = TextEditingController();
 
   @override
   void dispose() {
@@ -42,81 +48,113 @@ class _ScheduleRideScreenState extends State<ScheduleRideScreen> {
         automaticallyImplyLeading: false,
       ),
       backgroundColor: const Color(0xFF49B6F3),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 80.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              const SizedBox(height: 15),
-              const Text(
-                'Schedule a Ride',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 35.0,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w100,
+      body: BlocProvider(
+        create: (context) =>
+            ScheduleRideBloc(scheduleRepository: ScheduleRepository()),
+        child: BlocListener<ScheduleRideBloc, ScheduleRideState>(
+          listener: (context, state) {
+            if (state is ScheduleRideSuccess) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ConfirmScreen()),
+              );
+            } else if (state is ScheduleRideFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Failed to schedule ride: ${state.error}'),
                 ),
-                textAlign: TextAlign.center,
-              ),
-              FormComponent(
-                startingPointController: _startingPointController,
-                destinationController: _destinationController,
-                timeController: _timeController,
-                seatingController: _seatingController,
-                formFor: 'Schedule',
-              ),
-              ElevatedButton(
-                onPressed: () => Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ConfirmScreen()),
-                  (Route<dynamic> route) => false,
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  elevation: 0.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0),
-                  ),
-                  alignment: Alignment.center,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(7.0),
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: const Row(
-                      children: [
-                        SizedBox(width: 40),
-                        Expanded(
-                          flex: 8,
-                          child: Text(
-                            'Schedule',
-                            style: TextStyle(
-                              color: Color(0xFF49B6F3),
-                              fontFamily: 'Poppins',
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.w100,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        SizedBox(width: 30),
-                        Expanded(
-                          flex: 2,
-                          child: Icon(
-                            Icons.access_time,
-                            color: Color(0xFF49B6F3),
-                            size: 40,
-                          ),
-                        ),
-                      ],
+              );
+            }
+          },
+          child: SingleChildScrollView(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 80.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  const SizedBox(height: 15),
+                  const Text(
+                    'Schedule a Ride',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 35.0,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w100,
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
+                  FormComponent(
+                    startingPointController: _startingPointController,
+                    destinationController: _destinationController,
+                    timeController: _timeController,
+                    seatingController: _seatingController,
+                    formFor: 'Schedule',
+                  ),
+                  BlocBuilder<ScheduleRideBloc, ScheduleRideState>(
+                    builder: (context, state) {
+                      if (state is ScheduleRideLoading) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return ElevatedButton(
+                        onPressed: () {
+                          BlocProvider.of<ScheduleRideBloc>(context).add(
+                            ScheduleRideButtonPressed(
+                              startingPoint: _startingPointController.text,
+                              destination: _destinationController.text,
+                              time: _timeController.text,
+                              seating: _seatingController.text,
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          elevation: 0.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
+                          alignment: Alignment.center,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(7.0),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: const Row(
+                              children: [
+                                SizedBox(width: 40),
+                                Expanded(
+                                  flex: 8,
+                                  child: Text(
+                                    'Schedule',
+                                    style: TextStyle(
+                                      color: Color(0xFF49B6F3),
+                                      fontFamily: 'Poppins',
+                                      fontSize: 35.0,
+                                      fontWeight: FontWeight.w100,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                SizedBox(width: 30),
+                                Expanded(
+                                  flex: 2,
+                                  child: Icon(
+                                    Icons.access_time,
+                                    color: Color(0xFF49B6F3),
+                                    size: 40,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
