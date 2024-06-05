@@ -12,8 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Replace UserRepository() with an actual instance of your user repository class
-
     return MultiBlocProvider(
       providers: [
         BlocProvider<WelcomeScreenBloc>(
