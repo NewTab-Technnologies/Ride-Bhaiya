@@ -72,7 +72,7 @@ class _GetRideScreenState extends State<GetRideScreen> {
               return Column(
                 children: <Widget>[
                   const SizedBox(height: 20.0),
-                  Image.asset('assets/ridebhi.png'),
+                  Image.asset('assets/ridebhi.png'), // asset
                   const SizedBox(height: 20.0),
                   GestureDetector(
                     onTap: () => _getRideBloc.add(ViewSchedulesPressed()),
