@@ -5,31 +5,41 @@ import 'package:ridebhaiya/bloc/get_ride_screen/get_ride_screen_event.dart';
 import 'package:ridebhaiya/bloc/get_ride_screen/get_ride_screen_state.dart';
 
 void main() {
-  late GetRideScreenBloc bloc;
+  group('GetRideScreenBloc', () {
+    late GetRideScreenBloc getRideScreenBloc;
 
-  setUp(() {
-    bloc = GetRideScreenBloc();
+    setUp(() {
+      getRideScreenBloc = GetRideScreenBloc();
+    });
+
+    tearDown(() {
+      getRideScreenBloc.close();
+    });
+
+    test('initial state is GetRideInitial', () {
+      expect(getRideScreenBloc.state, equals(GetRideInitial()));
+    });
+
+    blocTest<GetRideScreenBloc, GetRideState>(
+      'emits [GetRideLoading, GetRideLoaded] when ViewSchedulesPressed is added',
+      build: () => getRideScreenBloc,
+      act: (bloc) => bloc.add(ViewSchedulesPressed()),
+      wait: const Duration(seconds: 1),
+      expect: () => [
+        GetRideLoading(),
+        GetRideLoaded(),
+      ],
+    );
+
+    blocTest<GetRideScreenBloc, GetRideState>(
+      'emits [GetRideLoading, GetRideLoaded] when RequestRidePressed is added',
+      build: () => getRideScreenBloc,
+      act: (bloc) => bloc.add(RequestRidePressed()),
+      wait: const Duration(seconds: 1),
+      expect: () => [
+        GetRideLoading(),
+        GetRideLoaded(),
+      ],
+    );
   });
-
-  tearDown(() {
-    bloc.close();
-  });
-
-  test('initial state is GetRideLoading', () {
-    expect(bloc.state, GetRideLoading());
-  });
-
-  blocTest<GetRideScreenBloc, GetRideState>(
-    'emits [GetRideLoaded] when ViewSchedulesPressed event is added',
-    build: () => bloc,
-    act: (bloc) => bloc.add(ViewSchedulesPressed()),
-    expect: () => [GetRideLoaded()],
-  );
-
-  blocTest<GetRideScreenBloc, GetRideState>(
-    'emits [GetRideLoaded] when RequestRidePressed event is added',
-    build: () => bloc,
-    act: (bloc) => bloc.add(RequestRidePressed()),
-    expect: () => [GetRideLoaded()],
-  );
 }

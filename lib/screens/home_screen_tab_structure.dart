@@ -180,27 +180,37 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class ScheduleTile extends StatelessWidget {
+class ScheduleTile extends StatefulWidget {
   const ScheduleTile({super.key, required this.values});
   final List<String> values;
 
   @override
+  State<ScheduleTile> createState() => _ScheduleTileState();
+}
+
+class _ScheduleTileState extends State<ScheduleTile> {
+  @override
   Widget build(BuildContext context) {
     return RideDetailsTile(
-      values: values,
+      values: widget.values,
       path: 'two',
     );
   }
 }
 
-class RequestTile extends StatelessWidget {
+class RequestTile extends StatefulWidget {
   const RequestTile({super.key, required this.values});
   final List<String> values;
 
   @override
+  State<RequestTile> createState() => _RequestTileState();
+}
+
+class _RequestTileState extends State<RequestTile> {
+  @override
   Widget build(BuildContext context) {
     return RideDetailsTile(
-      values: values,
+      values: widget.values,
       path: 'one',
     );
   }

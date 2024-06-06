@@ -79,7 +79,8 @@ class _ViewRequestsScreenState extends State<ViewRequestsScreen> {
                       height: height * 0.69,
                       child: SingleChildScrollView(
                         child: Column(
-                          children: state.requests.map((request) {
+                          //remove take(2) from the code to have 7 requests
+                          children: state.requests.take(2).map((request) {
                             return Padding(
                               padding: EdgeInsets.only(bottom: height * 0.02),
                               child: RequestTile(values: state.requests),

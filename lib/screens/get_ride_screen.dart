@@ -72,10 +72,14 @@ class _GetRideScreenState extends State<GetRideScreen> {
               return Column(
                 children: <Widget>[
                   const SizedBox(height: 20.0),
-                  Image.asset('assets/ridebhi.png'), // asset
+                  Image.asset('assets/ridebhi.png'),
                   const SizedBox(height: 20.0),
                   GestureDetector(
-                    onTap: () => _getRideBloc.add(ViewSchedulesPressed()),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ViewScheduleScreen()),
+                    ),
                     child: Container(
                       height: 60.0,
                       width: 350.0,
@@ -145,7 +149,11 @@ class _GetRideScreenState extends State<GetRideScreen> {
                   ),
                   const SizedBox(height: 40.0),
                   GestureDetector(
-                    onTap: () => _getRideBloc.add(RequestRidePressed()),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RequestRideScreen()),
+                    ),
                     child: Container(
                       height: 60.0,
                       width: 350.0,

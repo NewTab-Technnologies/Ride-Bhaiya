@@ -80,7 +80,8 @@ class _ViewScheduleScreenState extends State<ViewScheduleScreen> {
                         height: height * 0.69,
                         child: SingleChildScrollView(
                           child: Column(
-                            children: state.schedules.map((schedule) {
+                            //if you want more schedules remve take(2) from the code
+                            children: state.schedules.take(2).map((schedule) {
                               return Padding(
                                 padding: EdgeInsets.only(bottom: height * 0.02),
                                 child: ScheduleTile(values: state.schedules),

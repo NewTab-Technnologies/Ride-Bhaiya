@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 abstract class GetRideState extends Equatable {
+  const GetRideState();
+
   @override
   List<Object> get props => [];
 }
@@ -14,7 +16,7 @@ class GetRideLoaded extends GetRideState {}
 class GetRideError extends GetRideState {
   final String message;
 
-  GetRideError({required this.message});
+  const GetRideError(this.message);
 
   @override
   List<Object> get props => [message];

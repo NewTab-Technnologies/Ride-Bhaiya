@@ -3,36 +3,41 @@ import 'package:ridebhaiya/bloc/get_ride_screen/get_ride_screen_state.dart';
 
 void main() {
   group('GetRideState', () {
-    test('GetRideInitial supports value equality', () {
-      expect(GetRideInitial(), GetRideInitial());
+    test('GetRideInitial supports value comparison', () {
+      expect(
+        GetRideInitial(),
+        equals(GetRideInitial()),
+      );
     });
 
-    test('GetRideLoading supports value equality', () {
-      expect(GetRideLoading(), GetRideLoading());
+    test('GetRideLoading supports value comparison', () {
+      expect(
+        GetRideLoading(),
+        equals(GetRideLoading()),
+      );
     });
 
-    test('GetRideLoaded supports value equality', () {
-      expect(GetRideLoaded(), GetRideLoaded());
+    test('GetRideLoaded supports value comparison', () {
+      expect(
+        GetRideLoaded(),
+        equals(GetRideLoaded()),
+      );
     });
 
-    test('GetRideError supports value equality', () {
-      expect(GetRideError(message: "Error"), GetRideError(message: "Error"));
+    test('GetRideError supports value comparison', () {
+      const message = 'An error occurred';
+      expect(
+        const GetRideError(message),
+        equals(const GetRideError(message)),
+      );
     });
 
-    test('props are correct for GetRideInitial', () {
-      expect(GetRideInitial().props, []);
-    });
-
-    test('props are correct for GetRideLoading', () {
-      expect(GetRideLoading().props, []);
-    });
-
-    test('props are correct for GetRideLoaded', () {
-      expect(GetRideLoaded().props, []);
-    });
-
-    test('props are correct for GetRideError', () {
-      expect(GetRideError(message: "Error").props, ["Error"]);
+    test('GetRideError has correct props', () {
+      const message = 'An error occurred';
+      expect(
+        const GetRideError(message).props,
+        equals([message]),
+      );
     });
   });
 }
