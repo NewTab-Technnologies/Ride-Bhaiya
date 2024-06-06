@@ -4,7 +4,6 @@ import 'get_otp_state.dart';
 
 class GetOTPBloc extends Bloc<GetOTPEvent, GetOTPState> {
   GetOTPBloc() : super(GetOTPInitial());
-
   Stream<GetOTPState> mapEventToState(GetOTPEvent event) async* {
     if (event is SubmitMobileNumber) {
       yield GetOTPLoading();
