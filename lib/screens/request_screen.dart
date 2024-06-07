@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ridebhaiya/bloc/request_screen/request_screen_bloc.dart';
+import 'package:ridebhaiya/bloc/request_screen/request_screen_event.dart';
+import 'package:ridebhaiya/bloc/request_screen/request_screen_state.dart';
+import 'package:ridebhaiya/bloc/schedule_screen/schedule_repositary.dart';
 import 'package:ridebhaiya/screens/request_success_screen.dart';
 import 'package:ridebhaiya/widgets/form_component.dart';
 
@@ -42,77 +47,110 @@ class _RequestRideScreenState extends State<RequestRideScreen> {
         automaticallyImplyLeading: false,
       ),
       backgroundColor: const Color(0xFF49B6F3),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            const SizedBox(height: 100),
-            const Text(
-              'Request a Ride',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 35.0,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w100,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            FormComponent(
-              startingPointController: _startingPointController,
-              destinationController: _destinationController,
-              timeController: _timeController,
-              seatingController: _seatingController,
-              formFor: 'Request',
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushAndRemoveUntil(
+      body: BlocProvider(
+        create: (context) =>
+            RequestRideBloc(scheduleRepository: ScheduleRepository()),
+        child: BlocListener<RequestRideBloc, RequestRideState>(
+          listener: (context, state) {
+            if (state is RequestRideSuccess) {
+              Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const RequestSuccessScreen()),
                 (Route<dynamic> route) => false,
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                elevation: 0.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.0),
+              );
+            } else if (state is RequestRideFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Failed to request ride: ${state.error}'),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(7.0),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(width: 20.0),
-                      Expanded(
-                        flex: 8,
-                        child: Text(
-                          'Send Request',
-                          style: TextStyle(
-                            color: Color(0xFF49B6F3),
-                            fontFamily: 'Poppins',
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.w100,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 2,
-                        child: Icon(
-                          Icons.help_outline_outlined,
-                          color: Color(0xFF49B6F3),
-                          size: 45,
-                        ),
-                      ),
-                    ],
+              );
+            }
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                const SizedBox(height: 100),
+                const Text(
+                  'Request a Ride',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 35.0,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w100,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-              ),
+                FormComponent(
+                  startingPointController: _startingPointController,
+                  destinationController: _destinationController,
+                  timeController: _timeController,
+                  seatingController: _seatingController,
+                  formFor: 'Request',
+                ),
+                BlocBuilder<RequestRideBloc, RequestRideState>(
+                  builder: (context, state) {
+                    if (state is RequestRideLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return ElevatedButton(
+                      onPressed: () {
+                        BlocProvider.of<RequestRideBloc>(context).add(
+                          RequestRideButtonPressed(
+                            startingPoint: _startingPointController.text,
+                            destination: _destinationController.text,
+                            time: _timeController.text,
+                            seating: _seatingController.text,
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        elevation: 0.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(7.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20.0),
+                              Expanded(
+                                flex: 8,
+                                child: Text(
+                                  'Send Request',
+                                  style: TextStyle(
+                                    color: Color(0xFF49B6F3),
+                                    fontFamily: 'Poppins',
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.w100,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                flex: 2,
+                                child: Icon(
+                                  Icons.help_outline_outlined,
+                                  color: Color(0xFF49B6F3),
+                                  size: 45,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
