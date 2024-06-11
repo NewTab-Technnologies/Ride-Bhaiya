@@ -3,36 +3,40 @@ import 'package:ridebhaiya/bloc/otp_verification_screen/otp_verification_state.d
 
 void main() {
   group('OTPVerificationState', () {
-    test('supports value comparisons', () {
-      expect(OTPVerificationInitial(), OTPVerificationInitial());
-      expect(OTPVerificationLoading(), OTPVerificationLoading());
-      expect(OTPVerificationSuccess(), OTPVerificationSuccess());
-      expect(OTPVerificationError('error'), OTPVerificationError('error'));
+    test('VerInitial props', () {
+      final state = VerInitial();
+      expect(state.props, []);
+    });
 
-      expect(OTPVerificationInitial(), isNot(equals(OTPVerificationLoading())));
-      expect(OTPVerificationInitial(), isNot(equals(OTPVerificationSuccess())));
-      expect(OTPVerificationInitial(),
-          isNot(equals(OTPVerificationError('error'))));
+    test('OTPTimerStarted props', () {
+      const start = 30;
+      const state = OTPTimerStarted(start);
 
-      expect(OTPVerificationLoading(), isNot(equals(OTPVerificationInitial())));
-      expect(OTPVerificationLoading(), isNot(equals(OTPVerificationSuccess())));
-      expect(OTPVerificationLoading(),
-          isNot(equals(OTPVerificationError('error'))));
+      expect(state.props, [start]);
+    });
 
-      expect(OTPVerificationSuccess(), isNot(equals(OTPVerificationInitial())));
-      expect(OTPVerificationSuccess(), isNot(equals(OTPVerificationLoading())));
-      expect(OTPVerificationSuccess(),
-          isNot(equals(OTPVerificationError('error'))));
+    test('OTPVerified props', () {
+      final state = OTPVerified();
+      expect(state.props, []);
+    });
 
-      expect(OTPVerificationError('error'),
-          isNot(equals(OTPVerificationInitial())));
-      expect(OTPVerificationError('error'),
-          isNot(equals(OTPVerificationLoading())));
-      expect(OTPVerificationError('error'),
-          isNot(equals(OTPVerificationSuccess())));
+    test('OTPVerificationFail props', () {
+      const error = 'Error message';
+      const state = OTPVerificationFail(error);
 
-      expect(OTPVerificationError('error'),
-          isNot(equals(OTPVerificationError('different_error'))));
+      expect(state.props, [error]);
+    });
+
+    test('OTPResent props', () {
+      final state = OTPResent();
+      expect(state.props, []);
+    });
+
+    test('OTPResendFailed props', () {
+      const error = 'Error message';
+      const state = OTPResendFailed(error);
+
+      expect(state.props, [error]);
     });
   });
 }

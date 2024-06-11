@@ -1,24 +1,22 @@
+// otp_event.dart
 import 'package:equatable/equatable.dart';
 
-abstract class GetOTPEvent extends Equatable {
-  const GetOTPEvent();
+abstract class OTPEvent extends Equatable {
+  const OTPEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class SubmitMobileNumber extends GetOTPEvent {
-  const SubmitMobileNumber(); // Add this constructor
+class VerifyPhoneNumber extends OTPEvent {
+  final String phoneNumber;
+  final String? username;
 
-  @override
-  List<Object> get props => [];
+  const VerifyPhoneNumber({required this.phoneNumber, required this.username});
 }
 
-class SubmitUserName extends GetOTPEvent {
-  final String userName;
+class CheckUsernameAvailability extends OTPEvent {
+  final String username;
 
-  const SubmitUserName(this.userName);
-
-  @override
-  List<Object> get props => [userName];
+  const CheckUsernameAvailability({required this.username});
 }
