@@ -1,23 +1,40 @@
+// otp_state.dart
 import 'package:equatable/equatable.dart';
 
-abstract class GetOTPState extends Equatable {
-  const GetOTPState();
+abstract class OTPState extends Equatable {
+  const OTPState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-class GetOTPInitial extends GetOTPState {}
+class OTPInitial extends OTPState {}
 
-class GetOTPLoading extends GetOTPState {}
+class OTPLoading extends OTPState {}
 
-class GetOTPSuccess extends GetOTPState {}
+class OTPPhoneVerified extends OTPState {
+  final String verificationId;
 
-class GetOTPError extends GetOTPState {
-  final String message;
-
-  const GetOTPError(this.message);
+  const OTPPhoneVerified({required this.verificationId});
 
   @override
-  List<Object> get props => [message];
+  List<Object?> get props => [verificationId];
+}
+
+class OTPVerificationFailed extends OTPState {
+  final String error;
+
+  const OTPVerificationFailed({required this.error});
+
+  @override
+  List<Object?> get props => [error];
+}
+
+class UsernameAvailabilityChecked extends OTPState {
+  final bool isTaken;
+
+  const UsernameAvailabilityChecked({required this.isTaken});
+
+  @override
+  List<Object?> get props => [isTaken];
 }

@@ -1,21 +1,41 @@
 import 'package:equatable/equatable.dart';
 
 abstract class OTPVerificationState extends Equatable {
+  const OTPVerificationState();
+
   @override
   List<Object> get props => [];
 }
 
-class OTPVerificationInitial extends OTPVerificationState {}
+class VerInitial extends OTPVerificationState {}
 
-class OTPVerificationLoading extends OTPVerificationState {}
+class OTPTimerStarted extends OTPVerificationState {
+  final int start;
 
-class OTPVerificationSuccess extends OTPVerificationState {}
-
-class OTPVerificationError extends OTPVerificationState {
-  final String message;
-
-  OTPVerificationError(this.message);
+  const OTPTimerStarted(this.start);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [start];
+}
+
+class OTPVerified extends OTPVerificationState {}
+
+class OTPVerificationFail extends OTPVerificationState {
+  final String error;
+
+  const OTPVerificationFail(this.error);
+
+  @override
+  List<Object> get props => [error];
+}
+
+class OTPResent extends OTPVerificationState {}
+
+class OTPResendFailed extends OTPVerificationState {
+  final String error;
+
+  const OTPResendFailed(this.error);
+
+  @override
+  List<Object> get props => [error];
 }
