@@ -1,12 +1,15 @@
-// lib/bloc/request_screen/request_screen_event.dart
+abstract class RequestRideEvent {}
 
-import 'package:equatable/equatable.dart';
+class UpdateStartingPoint extends RequestRideEvent {
+  final String startingPoint;
 
-abstract class RequestRideEvent extends Equatable {
-  const RequestRideEvent();
+  UpdateStartingPoint({required this.startingPoint});
+}
 
-  @override
-  List<Object> get props => [];
+class UpdateDestination extends RequestRideEvent {
+  final String destination;
+
+  UpdateDestination({required this.destination});
 }
 
 class RequestRideButtonPressed extends RequestRideEvent {
@@ -14,19 +17,13 @@ class RequestRideButtonPressed extends RequestRideEvent {
   final String destination;
   final String time;
   final String seating;
+  final String username;
 
-  const RequestRideButtonPressed({
+  RequestRideButtonPressed({
     required this.startingPoint,
     required this.destination,
     required this.time,
     required this.seating,
+    required this.username,
   });
-
-  @override
-  List<Object> get props => [startingPoint, destination, time, seating];
-
-  @override
-  String toString() {
-    return 'RequestRideButtonPressed(startingPoint: $startingPoint, destination: $destination, time: $time, seating: $seating)';
-  }
 }

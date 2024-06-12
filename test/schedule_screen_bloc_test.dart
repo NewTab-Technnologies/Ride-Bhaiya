@@ -18,12 +18,14 @@ void main() {
         startingPoint: '',
         destination: '',
         time: '00:00',
-        seating: '1',
+        seating: '',
+        username: '',
       );
       expect(event.startingPoint, equals(''));
       expect(event.destination, equals(''));
       expect(event.time, equals('00:00'));
-      expect(event.seating, equals('1'));
+      expect(event.seating, equals(''));
+      expect(event.username, equals(''));
     });
   });
 }

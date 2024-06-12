@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ridebhaiya/bloc/schedule_screen/schedule_repositary.dart';
+import 'package:ridebhaiya/bloc/data_repository.dart';
 import 'package:ridebhaiya/bloc/schedule_screen/schedule_screen_bloc.dart';
 import 'package:ridebhaiya/bloc/schedule_screen/schedule_screen_event.dart';
 import 'package:ridebhaiya/bloc/schedule_screen/schedule_screen_state.dart';
@@ -8,6 +9,7 @@ import 'package:ridebhaiya/screens/confirm.dart';
 import 'package:ridebhaiya/widgets/form_component.dart';
 
 class ScheduleRideScreen extends StatefulWidget {
+  static String uid = '';
   const ScheduleRideScreen({super.key});
 
   @override
@@ -20,6 +22,34 @@ class ScheduleRideScreenState extends State<ScheduleRideScreen> {
   final TextEditingController _destinationController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
   final TextEditingController _seatingController = TextEditingController();
+
+  String _username = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUsername();
+  }
+
+  Future<void> _fetchUsername() async {
+    // FirebaseFirestore.instance.collection('user').doc().get();
+    try {
+      final DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('user')
+          .doc('MwwkLsi06OM9TojOt7hVxdf9NPf1')
+          .get();
+      setState(() {
+        _username = userDoc['username'];
+      });
+    } catch (error) {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to fetch username: $error'),
+        ),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -50,7 +80,7 @@ class ScheduleRideScreenState extends State<ScheduleRideScreen> {
       backgroundColor: const Color(0xFF49B6F3),
       body: BlocProvider(
         create: (context) =>
-            ScheduleRideBloc(scheduleRepository: ScheduleRepository()),
+            ScheduleRideBloc(scheduleRepository: DataRepository()),
         child: BlocListener<ScheduleRideBloc, ScheduleRideState>(
           listener: (context, state) {
             if (state is ScheduleRideSuccess) {
@@ -105,6 +135,7 @@ class ScheduleRideScreenState extends State<ScheduleRideScreen> {
                               destination: _destinationController.text,
                               time: _timeController.text,
                               seating: _seatingController.text,
+                              username: _username,
                             ),
                           );
                         },
