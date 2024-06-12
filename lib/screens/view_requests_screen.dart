@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ridebhaiya/bloc/view_request/view_request_bloc.dart';
 import 'package:ridebhaiya/bloc/view_request/view_request_event.dart';
 import 'package:ridebhaiya/bloc/view_request/view_request_state.dart';
+import 'package:ridebhaiya/models/schedule_model.dart';
 import 'package:ridebhaiya/widgets/request_ride_schedule_tile.dart';
 
 class ViewRequestsScreen extends StatefulWidget {
@@ -120,7 +121,10 @@ class _RequestTileState extends State<RequestTile> {
       height: height * 0.325,
       width: width * 0.95,
       margin: const EdgeInsets.symmetric(horizontal: 7.0),
-      child: RideDetailsTile(values: widget.values, flag: false),
+      child: RideDetailsTile(
+          values:
+              ScheduleModel(), //need to be changed as required when requests are displayed
+          flag: false),
     );
   }
 }

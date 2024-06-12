@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ridebhaiya/bloc/view_schedules/view_schedules_bloc.dart';
 import 'package:ridebhaiya/bloc/view_schedules/view_schedules_event.dart';
 import 'package:ridebhaiya/bloc/view_schedules/view_schedules_state.dart';
+import 'package:ridebhaiya/models/schedule_model.dart';
 import 'package:ridebhaiya/widgets/request_ride_schedule_tile.dart';
 
 class ViewScheduleScreen extends StatefulWidget {
@@ -122,7 +123,10 @@ class _ScheduleTileState extends State<ScheduleTile> {
       height: height * 0.325,
       width: width * 0.95,
       margin: const EdgeInsets.symmetric(horizontal: 7.0),
-      child: RideDetailsTile(values: widget.values, flag: false),
+      child: RideDetailsTile(
+          values:
+              ScheduleModel(), //need to be changed as required when schedules are displayed
+          flag: false),
     );
   }
 }

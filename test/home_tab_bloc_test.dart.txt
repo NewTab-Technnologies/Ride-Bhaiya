@@ -1,0 +1,297 @@
+// // import 'package:flutter_test/flutter_test.dart';
+// // import 'package:bloc_test/bloc_test.dart';
+// // import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_bloc.dart';
+// // import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_state.dart';
+
+// // void main() {
+// //   group('RideDetailsBloc', () {
+// //     late RideDetailsBloc rideDetailsBloc;
+
+// //     setUp(() {
+// //       rideDetailsBloc = RideDetailsBloc();
+// //     });
+
+// //     tearDown(() {
+// //       rideDetailsBloc.close();
+// //     });
+
+// //     test('initial state is RideDetailsInitial', () {
+// //       expect(rideDetailsBloc.state, RideDetailsInitial());
+// //     });
+
+// //     blocTest<RideDetailsBloc, RideDetailsState>(
+// //       'emits [RideDetailsLoading, RideDetailsLoaded] when FetchRideDetails is added and succeeds',
+// //       build: () => rideDetailsBloc,
+// //       act: (bloc) => bloc.fetchRideDetails(),
+// //       wait: const Duration(seconds: 3),
+// //       expect: () => [
+// //         RideDetailsLoading(),
+// //         isA<RideDetailsLoaded>(),
+// //       ],
+// //     );
+
+// //     blocTest<RideDetailsBloc, RideDetailsState>(
+// //       'emits [RideDetailsLoading, RideDetailsError] when FetchRideDetails is added and fails',
+// //       build: () =>
+// //           RideDetailsBloc(testErrorMessage: 'Failed to fetch ride details'),
+// //       act: (bloc) => bloc.fetchRideDetails(),
+// //       wait: const Duration(seconds: 3),
+// //       expect: () => [
+// //         RideDetailsLoading(),
+// //         const RideDetailsError('Exception: Failed to fetch ride details'),
+// //       ],
+// //     );
+// //   });
+// // }
+// import 'package:bloc_test/bloc_test.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:mockito/annotations.dart';
+// import 'package:mockito/mockito.dart';
+// import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_bloc.dart';
+// import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_state.dart';
+// import 'package:ridebhaiya/models/schedule_model.dart';
+
+// // Generate a MockFirestore instance
+// import 'ride_details_bloc_test.dart';
+// @GenerateMocks(
+//     [FirebaseFirestore, DocumentSnapshot, QuerySnapshot, QueryDocumentSnapshot])
+// import 'ride_details_bloc_test.mocks.dart';
+
+// void main() {
+//   // Initialize the required plugins
+//   setupFirebaseAuthMocks();
+
+//   late MockFirebaseFirestore mockFirestore;
+//   late RideDetailsBloc rideDetailsBloc;
+//   late MockDocumentSnapshot mockDocumentSnapshot;
+//   late MockQuerySnapshot mockQuerySnapshot;
+//   late MockQueryDocumentSnapshot mockQueryDocumentSnapshot;
+
+//   setUp(() async {
+//     await Firebase.initializeApp();
+//     mockFirestore = MockFirebaseFirestore();
+//     mockDocumentSnapshot = MockDocumentSnapshot();
+//     mockQuerySnapshot = MockQuerySnapshot();
+//     mockQueryDocumentSnapshot = MockQueryDocumentSnapshot();
+//     rideDetailsBloc = RideDetailsBloc();
+//   });
+
+//   tearDown(() {
+//     rideDetailsBloc.close();
+//   });
+
+//   blocTest<RideDetailsBloc, RideDetailsState>(
+//     'emits [RideDetailsLoading, RideDetailsLoaded] when fetchRideDetails is successful',
+//     build: () {
+//       when(mockFirestore.collection('user').doc(any).get())
+//           .thenAnswer((_) async => mockDocumentSnapshot);
+//       when(mockDocumentSnapshot.data()).thenReturn({'phone': '1234567890'});
+
+//       when(mockFirestore
+//               .collection('schedules')
+//               .orderBy('scheduleDates', descending: true)
+//               .limit(1)
+//               .get())
+//           .thenAnswer((_) async => mockQuerySnapshot);
+//       when(mockQuerySnapshot.docs).thenReturn([mockQueryDocumentSnapshot]);
+//       when(mockQueryDocumentSnapshot.data()).thenReturn({
+//         'id': '1',
+//         'scheduleDates': '2023-06-12',
+//         'status': 'scheduled',
+//         'description': 'Test Schedule'
+//       });
+
+//       return rideDetailsBloc;
+//     },
+//     act: (bloc) => bloc.fetchRideDetails(),
+//     expect: () => [
+//       RideDetailsLoading(),
+//       isA<RideDetailsLoaded>(),
+//     ],
+//   );
+
+//   blocTest<RideDetailsBloc, RideDetailsState>(
+//     'emits [RideDetailsLoading, RideDetailsError] when fetchRideDetails fails',
+//     build: () {
+//       when(mockFirestore.collection('user').doc(any).get())
+//           .thenThrow(Exception('Failed to fetch data'));
+
+//       return rideDetailsBloc;
+//     },
+//     act: (bloc) => bloc.fetchRideDetails(),
+//     expect: () => [
+//       RideDetailsLoading(),
+//       isA<RideDetailsError>(),
+//     ],
+//   );
+// }
+
+// void setupFirebaseAuthMocks() async {
+//   TestWidgetsFlutterBinding.ensureInitialized();
+
+//   await Firebase.initializeApp();
+// }
+
+// import 'package:bloc_test/bloc_test.dart';
+// // import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:mockito/mockito.dart';
+// import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_bloc.dart';
+// // import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_event.dart';
+// import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_state.dart';
+// // import 'package:ridebhaiya/bloc/ride_details_bloc.dart';
+// // import 'package:ridebhaiya/models/schedule_model.dart';
+
+// import 'ride_details_bloc_test.mocks.dart';
+
+// void main() {
+//   late MockFirebaseFirestore mockFirestore;
+//   late RideDetailsBloc rideDetailsBloc;
+//   late MockDocumentSnapshot mockDocumentSnapshot;
+//   late MockQuerySnapshot mockQuerySnapshot;
+//   late MockQueryDocumentSnapshot mockQueryDocumentSnapshot;
+
+//   setUp(() {
+//     mockFirestore = MockFirebaseFirestore();
+//     mockDocumentSnapshot = MockDocumentSnapshot();
+//     mockQuerySnapshot = MockQuerySnapshot();
+//     mockQueryDocumentSnapshot = MockQueryDocumentSnapshot();
+//     rideDetailsBloc = RideDetailsBloc();
+//   });
+
+//   tearDown(() {
+//     rideDetailsBloc.close();
+//   });
+
+//   group('RideDetailsBloc', () {
+//     blocTest<RideDetailsBloc, RideDetailsState>(
+//       'emits [RideDetailsLoading, RideDetailsLoaded] when fetchRideDetails is successful',
+//       build: () {
+//         when(mockFirestore.collection('user').doc(any).get())
+//             .thenAnswer((_) async => MockDocumentSnapshot());
+//         when(mockDocumentSnapshot.data()).thenReturn({'phone': '1234567890'});
+
+//         when(mockFirestore
+//                 .collection('schedules')
+//                 .orderBy('scheduleDates', descending: true)
+//                 .limit(1)
+//                 .get())
+//             .thenAnswer((_) async => MockQuerySnapshot());
+//         when(mockQuerySnapshot.docs).thenReturn([mockQueryDocumentSnapshot]);
+//         when(mockQueryDocumentSnapshot.data()).thenReturn({
+//           'id': '1',
+//           'scheduleDates': '2023-06-12',
+//           'status': 'scheduled',
+//           'description': 'Test Schedule'
+//         });
+
+//         return rideDetailsBloc;
+//       },
+//       act: (bloc) => bloc.fetchRideDetails(),
+//       expect: () => [
+//         RideDetailsLoading(),
+//         isA<RideDetailsLoaded>(),
+//       ],
+//     );
+
+//     blocTest<RideDetailsBloc, RideDetailsState>(
+//       'emits [RideDetailsLoading, RideDetailsError] when fetchRideDetails fails',
+//       build: () {
+//         when(mockFirestore.collection('user').doc(any).get())
+//             .thenThrow(Exception('Failed to fetch data'));
+
+//         return rideDetailsBloc;
+//       },
+//       act: (bloc) => bloc.fetchRideDetails(),
+//       expect: () => [
+//         RideDetailsLoading(),
+//         isA<RideDetailsError>(),
+//       ],
+//     );
+//   });
+// }z
+// import 'package:bloc_test/bloc_test.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:mockito/mockito.dart';
+// import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_sceen_tab_structure_event.dart';
+// import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_bloc.dart';
+// import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_state.dart';
+
+// class MockFirebaseFirestore extends Mock implements FirebaseFirestore {}
+
+// class MockQuerySnapshot extends Mock implements QuerySnapshot {}
+
+// class MockDocumentSnapshot extends Mock implements DocumentSnapshot {}
+
+// class MockDocumentReference extends Mock
+//     implements DocumentReference<Map<String, dynamic>> {
+//       final mockDocumentReference = MockDocumentReference();
+// when(mockDocumentReference.get Function() ).thenReturn(Future.value(mockDocumentSnapshot));
+//     }
+
+// void main() {
+//   group('RideDetailsBloc', () {
+//     late RideDetailsBloc rideDetailsBloc;
+//     late MockFirebaseFirestore mockFirebaseFirestore;
+//     late MockQuerySnapshot mockQuerySnapshot;
+//     late MockDocumentSnapshot mockDocumentSnapshot;
+
+//     setUp(() {
+//       mockFirebaseFirestore = MockFirebaseFirestore();
+//       mockQuerySnapshot = MockQuerySnapshot();
+//       mockDocumentSnapshot = MockDocumentSnapshot();
+//       rideDetailsBloc = RideDetailsBloc();
+//     });
+
+//     blocTest<RideDetailsBloc, RideDetailsState>(
+//       'emits [RideDetailsLoading, RideDetailsLoaded] when FetchRideDetails is added',
+//       build: () {
+//         when(mockFirebaseFirestore
+//                 .collection('user')
+//                 .doc('MwwkLsi06OM9TojOt7hVxdf9NPf1'))
+//             .thenAnswer((_) => Future.value(mockDocumentSnapshot));
+//         when(mockDocumentSnapshot.data())
+//             .thenReturn({'phone': '+1234567890'} as Map<String, dynamic>);
+//         when(mockFirebaseFirestore
+//                 .collection('schedules')
+//                 .orderBy('scheduleDates', descending: true)
+//                 .limit(1))
+//             .thenAnswer(
+//                 (_) => mockQuerySnapshot as Query<Map<String, dynamic>>);
+//         when(mockQuerySnapshot.docs.first.data()).thenReturn({
+//           'scheduleDates': DateTime.now(),
+//           'scheduleTime': '10:00 AM',
+//           'pickUpLocation': 'Location A',
+//           'destination': 'Location B',
+//         });
+
+//         return rideDetailsBloc;
+//       },
+//       act: (bloc) => bloc.add(FetchRideDetails()),
+//       expect: () => [
+//         RideDetailsLoading(),
+//         isA<RideDetailsLoaded>(),
+//       ],
+//     );
+
+//     blocTest<RideDetailsBloc, RideDetailsState>(
+//       'emits [RideDetailsLoading, RideDetailsError] when FetchRideDetails fails',
+//       build: () {
+//         when(mockFirebaseFirestore
+//                 .collection('user')
+//                 .doc('MwwkLsi06OM9TojOt7hVxdf9NPf1'))
+//             .thenThrow(Exception('Failed to fetch user data'));
+
+//         return RideDetailsBloc(testErrorMessage: 'Test error message');
+//       },
+//       act: (bloc) => bloc.add(FetchRideDetails()),
+//       expect: () => [
+//         RideDetailsLoading(),
+//         isA<RideDetailsError>(),
+//       ],
+//     );
+//   });
+// }

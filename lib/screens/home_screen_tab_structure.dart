@@ -3,11 +3,13 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_bloc.dart';
 import 'package:ridebhaiya/bloc/home_screen_tab_structure/home_screen_tab_structure_state.dart';
+import 'package:ridebhaiya/models/schedule_model.dart';
 import 'package:ridebhaiya/widgets/request_ride_schedule_tile.dart';
 import 'get_ride_screen.dart';
 import 'offer_ride_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  static String? number;
   const HomeScreen({super.key});
 
   @override
@@ -96,8 +98,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     } else if (state is RideDetailsLoaded) {
                       return TabBarView(
                         children: [
-                          ScheduleTile(values: state.rideDetails),
-                          RequestTile(values: state.rideDetails),
+                          ScheduleTile(values: state.scheduleDetails),
+                          RequestTile(
+                              values: state
+                                  .scheduleDetails), //Should be changed when passing Latest Requests
                         ],
                       );
                     } else if (state is RideDetailsError) {
@@ -180,37 +184,27 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class ScheduleTile extends StatefulWidget {
+class ScheduleTile extends StatelessWidget {
   const ScheduleTile({super.key, required this.values});
-  final List<String> values;
+  final ScheduleModel values;
 
-  @override
-  State<ScheduleTile> createState() => _ScheduleTileState();
-}
-
-class _ScheduleTileState extends State<ScheduleTile> {
   @override
   Widget build(BuildContext context) {
     return RideDetailsTile(
-      values: widget.values,
+      values: values,
       path: 'two',
     );
   }
 }
 
-class RequestTile extends StatefulWidget {
+class RequestTile extends StatelessWidget {
   const RequestTile({super.key, required this.values});
-  final List<String> values;
+  final ScheduleModel values;
 
-  @override
-  State<RequestTile> createState() => _RequestTileState();
-}
-
-class _RequestTileState extends State<RequestTile> {
   @override
   Widget build(BuildContext context) {
     return RideDetailsTile(
-      values: widget.values,
+      values: values,
       path: 'one',
     );
   }
