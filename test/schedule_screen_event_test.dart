@@ -20,11 +20,13 @@ void main() {
         destination: 'Test Destination',
         time: 'Test Time',
         seating: 'Test Seating',
+        username: 'Test Username',
       );
       expect(event.startingPoint, equals('Test Starting Point'));
       expect(event.destination, equals('Test Destination'));
       expect(event.time, equals('Test Time'));
       expect(event.seating, equals('Test Seating'));
+      expect(event.username, equals('Test Username'));
     });
   });
 }

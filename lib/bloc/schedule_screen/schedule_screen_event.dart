@@ -17,11 +17,13 @@ class ScheduleRideButtonPressed extends ScheduleRideEvent {
   final String destination;
   final String time;
   final String seating;
+  final String username;
 
   ScheduleRideButtonPressed({
     required this.startingPoint,
     required this.destination,
     required this.time,
     required this.seating,
+    required this.username,
   });
 }
