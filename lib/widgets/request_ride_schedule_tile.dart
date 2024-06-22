@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ridebhaiya/models/schedule_model.dart';
+import 'package:ridebhaiya/screens/home_screen_tab_structure.dart';
+// import 'package:ridebhaiya/screens/otp_verification_screen.dart';
 import 'package:ridebhaiya/screens/view_requests_screen.dart';
 import 'package:ridebhaiya/screens/view_schedule_screen.dart';
 
@@ -9,7 +12,7 @@ class RideDetailsTile extends StatefulWidget {
     this.flag = true,
     this.path = 'one',
   });
-  final List<String> values;
+  final ScheduleModel values;
   final dynamic flag;
   final String path;
 
@@ -27,9 +30,23 @@ class _RideDetailsTileState extends State<RideDetailsTile> {
     "Seats",
     "Contact"
   ];
+
+  List<String?> rideDetails(ScheduleModel values) {
+    return [
+      values.requestedBy,
+      values.startingPoint,
+      values.destination,
+      values.scheduleDates.toString(),
+      values.scheduleTime.toString(),
+      values.seatingFor.toString(),
+      HomeScreen.number,
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    var ridedetails = rideDetails(widget.values);
     return Container(
       height: height * 0.5,
       margin: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -62,11 +79,11 @@ class _RideDetailsTileState extends State<RideDetailsTile> {
                     }).toList(),
                   ),
                   Column(
-                    children: widget.values.map((val) {
+                    children: ridedetails.map((val) {
                       return Padding(
                         padding: EdgeInsets.only(bottom: height * 0.007),
                         child: Text(
-                          val,
+                          val!,
                           style: TextStyle(
                             color: const Color.fromRGBO(73, 182, 243, 1.000),
                             fontFamily: "Poppins",

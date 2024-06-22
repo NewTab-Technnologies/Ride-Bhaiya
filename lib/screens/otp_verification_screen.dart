@@ -5,6 +5,7 @@ import 'package:iconify_flutter/icons/teenyicons.dart';
 import 'package:ridebhaiya/screens/success.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
+  static String uid = '';
   const OTPVerificationScreen({super.key});
 
   @override
@@ -91,11 +92,15 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             ),
             const SizedBox(height: 38.0),
             GestureDetector(
-              onTap: () => Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => const SuccessScreen()),
-                (Route<dynamic> route) => false,
-              ),
+              onTap: () {
+                OTPVerificationScreen.uid = 'BaszevHDkJNz8aEcDDIjLsMqGwf2';
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SuccessScreen()),
+                  (Route<dynamic> route) => false,
+                );
+              },
               child: Container(
                 height: 65.0,
                 width: 220.0,
